@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html>
-
-<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Click the Cake 🎂</title>
-
+  <title>Click the Chaos Cake 🎂</title>
   <style>
     body {
       background-color: #fffbe6;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
       padding: 50px;
+      overflow: hidden;
+      height: 100vh;
+      margin: 0;
+      position: relative;
     }
 
     #cake {
-      width: 150px;
+      width: 120px;
       cursor: pointer;
-      animation: float 2s infinite ease-in-out;
+      position: absolute;
+      transition: all 0.3s ease-in-out;
+      animation: wiggle 0.4s infinite;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
+    @keyframes wiggle {
+      0% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
+      100% { transform: rotate(-2deg); }
     }
 
     #message {
@@ -32,13 +33,17 @@
       font-size: 24px;
       color: #b5651d;
       min-height: 100px;
+      position: fixed;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
     }
   </style>
-
-  
 </head>
 <body>
-  <h1>🎉 Click the Cake! 🎂</h1>
+
+  <h1>🎉 Try Catching the Cake! 🎂</h1>
   <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" id="cake" alt="Cake">
   <div id="message"></div>
 
@@ -52,16 +57,31 @@
     ];
 
     let index = 0;
+    const cake = document.getElementById("cake");
+    const msgDiv = document.getElementById("message");
 
-    document.getElementById("cake").addEventListener("click", function() {
-      const msgDiv = document.getElementById("message");
+    function randomPosition() {
+      const maxX = window.innerWidth - cake.offsetWidth;
+      const maxY = window.innerHeight - cake.offsetHeight - 150; // avoid overlapping header & message
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+      cake.style.left = randomX + 'px';
+      cake.style.top = randomY + 'px';
+    }
+
+    cake.addEventListener("click", function () {
       if (index < messages.length) {
         msgDiv.textContent = messages[index];
         index++;
+        randomPosition();
       } else {
-        msgDiv.textContent = "No more cake! 🎂💥";
+        msgDiv.textContent = "No more messages, just sugar crashes now. 🎂💥";
       }
     });
+
+    // Start with random position
+    randomPosition();
   </script>
+
 </body>
 </html>
