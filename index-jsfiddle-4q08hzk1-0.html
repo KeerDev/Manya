@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Click the Cake 🎂</title>
+
+  <style>
+    body {
+      background-color: #fffbe6;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #cake {
+      width: 150px;
+      cursor: pointer;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 24px;
+      color: #b5651d;
+      min-height: 100px;
+    }
+  </style>
+
+  
+</head>
+<body>
+  <h1>🎉 Click the Cake! 🎂</h1>
+  <img src="https://cdn-icons-png.flaticon.com/512/3595/3595455.png" id="cake" alt="Cake">
+  <div id="message"></div>
+
+  <script>
+    const messages = [
+      "Happy birthday you chaotic legend 🎈",
+      "You're sweeter than cake (and that’s saying a lot)",
+      "May this year be full of good memes and bad decisions 🧁",
+      "You deserve all the frosting and none of the drama",
+      "Final message: thanks for being born, you wonderful human 🎉"
+    ];
+
+    let index = 0;
+
+    document.getElementById("cake").addEventListener("click", function() {
+      const msgDiv = document.getElementById("message");
+      if (index < messages.length) {
+        msgDiv.textContent = messages[index];
+        index++;
+      } else {
+        msgDiv.textContent = "No more cake! 🎂💥";
+      }
+    });
+  </script>
+</body>
+</html>
